@@ -1,30 +1,39 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupabaseService } from '../../services/supabase-service';
+import { maxLength } from '@angular/forms/signals';
+import { CreateIssueDto } from '../../../model/CreateIssueDto';
 
 @Component({
   selector: 'app-form',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './form.html',
   styleUrl: './form.css',
 })
 export class Form {
-  title = '';
-  description = '';
-  category = '';
-  priority = 1;
-  email = '';
+  form: FormGroup;
 
-  constructor(private supabaseService: SupabaseService){}
+  constructor(
+    private supabaseService: SupabaseService,
+    private formBuilder: FormBuilder
+  ){
+    this.form = formBuilder.group({
+      title: new FormControl('', [Validators.required, Validators.maxLength(32)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(1024)]),
+      category: new FormControl('', [Validators.required, Validators.maxLength(32)]),
+      priority: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(5)]),
+      email: new FormControl('', [Validators.required, Validators.email])
+    });
+  }
 
   async onFormSubmit(){
     try {
       const res = await this.supabaseService.createIssue({
-        title: this.title,
-        description: this.description,
-        category: this.category,
-        priority: this.priority,
-        email: this.email
+        title: this.form.get('title')?.value,
+        description: this.form.get('description')?.value,
+        category: this.form.get('category')?.value,
+        priority: this.form.get('priority')?.value,
+        email: this.form.get('email')?.value
       });
       console.log('Issue created!', res);
     } 

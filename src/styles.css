@@ -47,7 +47,14 @@ input {
     padding: var(--small-padding);
     height: 2em;
     font-size: large;
+}
 
+textarea {
+    display: block;
+    width: 100%;
+    padding: var(--small-padding);
+    height: 5em;
+    font-size: large;
 }
 
 button[type=submit] {
