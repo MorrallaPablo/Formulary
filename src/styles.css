@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+/*0123456789ABCDEF*/
+
+:root {
+    --small-padding: 0.5em;
+    --medium-padding: 1em;
+    --large-padding: 2em;
+
+    --background-color: #EEE;
+    --text-color: #111;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 650px;
+    padding: var(--large-padding);
+    margin: auto;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: xx-large;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    padding: var(--large-padding);
+    border: 1px black solid;
+}
+
+label {
+    display: block;
+    margin: var(--medium-padding) 0;
+    font-size: large;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: var(--small-padding);
+    height: 2em;
+    font-size: large;
+
+}
+
+button[type=submit] {
+    width: 100%;
+    font-size: large;
+    height: 2em;
+}
