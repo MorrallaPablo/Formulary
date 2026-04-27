@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupabaseService } from '../../services/supabase-service';
 import { maxLength } from '@angular/forms/signals';
 import { CreateIssueDto } from '../../../model/CreateIssueDto';
@@ -24,6 +24,30 @@ export class Form {
       priority: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(5)]),
       email: new FormControl('', [Validators.required, Validators.email])
     });
+  }
+
+  get title() {
+    return this.form.get('title');
+  }
+
+  get description() {
+    return this.form.get('description');
+  }
+
+  get category() {
+    return this.form.get('category');
+  }
+
+  get priority() {
+    return this.form.get('priority');
+  }
+
+  get email() {
+    return this.form.get('email');
+  }
+
+  isInvalid(control: AbstractControl|null){
+    return (control?.invalid && (control?.touched || control?.dirty))
   }
 
   async onFormSubmit(){

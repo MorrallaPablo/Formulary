@@ -8,6 +8,15 @@
                 placeholder="Title"
                 formControlName="title"
             />
+
+            @if (isInvalid(title)) {
+                @if (title?.errors?.['required']){
+                    <small class="error">Title is required</small>
+                }
+                @if (title?.errors?.['maxlength']){
+                    <small class="error">Title has a maximum length of 32 characters</small>
+                }
+            }
         </label>
 
         <label>Description
@@ -16,6 +25,15 @@
                 formControlName="description"
             >
             </textarea>
+
+            @if (isInvalid(description)) {
+                @if (description?.errors?.['required']){
+                    <small class="error">Description is required</small>
+                }
+                @if (description?.errors?.['maxLength']){
+                    <small class="error">Description has a maximum length of 1024 characters</small>
+                }
+            }
         </label>
 
         <label>Category
@@ -24,6 +42,15 @@
                 placeholder="Category"
                 formControlName="category"
             />
+
+            @if (isInvalid(category)) {
+                @if (category?.errors?.['required']){
+                    <small class="error">Category is required</small>
+                }
+                @if (category?.errors?.['maxlength']){
+                    <small class="error">Category has a maximum length of 32 characters</small>
+                }
+            }
         </label>
 
         <label>Priority
@@ -31,6 +58,15 @@
                 type="number"
                 formControlName="priority"
             />
+
+            @if (isInvalid(priority)) {
+                @if (priority?.errors?.['required']){
+                    <small class="error">Priority is required</small>
+                }
+                @if (priority?.errors?.['min'] || priority?.errors?.['max']){
+                    <small class="error">Priority has to be between 1 and 5</small>
+                }
+            }
         </label>
 
         <label>Email
@@ -39,9 +75,21 @@
                 placeholder="Email"
                 formControlName="email"
             />
+
+            @if (isInvalid(email)) {
+                @if (email?.errors?.['required']){
+                    <small class="error">Email is required</small>
+                }
+                @if (email?.errors?.['email']){
+                    <small class="error">Email should have the format name@domain.com</small>
+                }
+            }
         </label>
 
-        <button type="submit">
+        <button 
+            type="submit"
+            [disabled]="form.invalid"
+        >
             Create Issue
         </button>
     </form>
