@@ -1,25 +1,55 @@
 <main>
     <h1>Create Issue</h1>
 
-    <form>
+    <form (ngSubmit)="onFormSubmit()">
         <label>Title
-            <input type="text">
+            <input 
+                type="text"
+                [(ngModel)]="title"
+                name="title"
+                placeholder="Title"
+                required
+            />
         </label>
 
         <label>Description
-            <input type="text">
+            <input 
+                type="text"
+                [(ngModel)]="description"
+                name="description"
+                placeholder="Description"
+                required
+            />
         </label>
 
         <label>Category
-            <input type="text">
+            <input 
+                type="text"
+                [(ngModel)]="category"
+                name="category"
+                placeholder="Category"
+                required
+            />
         </label>
 
         <label>Priority
-            <input type="number">
+            <input 
+                type="number"
+                [(ngModel)]="priority"
+                name="priority"
+                placeholder="1"
+                required
+            />
         </label>
 
         <label>Email
-            <input type="email">
+            <input 
+                type="email"
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Email"
+                required
+            />
         </label>
 
         <button type="submit">
