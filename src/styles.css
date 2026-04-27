@@ -58,12 +58,33 @@ textarea {
     font-size: large;
 }
 
-button[type=submit] {
+button {
     width: 100%;
     font-size: large;
     height: 2em;
+    margin: var(--medium-padding) 0;
 }
 
 .error {
     color: var(--error-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    width: 100%;
+}
+
+th {
+    font-weight: bold;
+    border: 1px solid black;
+    padding: var(--small-padding);
+}
+
+td {
+    border: 1px solid black;
+    padding: var(--small-padding);
 }

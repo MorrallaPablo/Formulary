@@ -3,10 +3,11 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModu
 import { SupabaseService } from '../../services/supabase-service';
 import { maxLength } from '@angular/forms/signals';
 import { CreateIssueDto } from '../../../model/CreateIssueDto';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './form.html',
   styleUrl: './form.css',
 })
