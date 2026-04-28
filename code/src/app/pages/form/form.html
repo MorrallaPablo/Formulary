@@ -99,10 +99,13 @@
             Create Issue
         </button>
 
-        @if (successMessage()) {
+        @if (submitting()) {
+            <p>Submitting...</p>
+        }
+        @else if (successMessage()) {
             <p class="success">{{successMessage()}}</p>
         }
-        @if (errorMessage()) {
+        @else if (errorMessage()) {
             <p class="error">{{errorMessage()}}</p>
         }
     </form>

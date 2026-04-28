@@ -34,6 +34,7 @@ export class SupabaseService {
     const { data, error } = await this.supabase
       .from('issues')
       .select('*')
+      .order('timestamp', {ascending: false})
     
     if (error) {
       console.error('Error while retrieving issues: ', error);

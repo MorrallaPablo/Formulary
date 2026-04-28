@@ -14,6 +14,7 @@ import { RouterLink } from "@angular/router";
 export class Form {
   form: FormGroup;
 
+  submitting = signal(false);
   successMessage = signal<string|null>(null);
   errorMessage = signal<string|null>(null);
 
@@ -55,6 +56,8 @@ export class Form {
   }
 
   async onFormSubmit(){
+    this.submitting.set(true);
+
     try {
       const res = await this.supabaseService.createIssue({
         title: this.form.get('title')?.value,
@@ -71,5 +74,7 @@ export class Form {
       console.error('Error while creating issue: ', error);
       this.successMessage.set('There was an error creating the issue. Try again later.');
     }
+
+    this.submitting.set(false);
   }
 }
