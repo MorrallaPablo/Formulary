@@ -13,8 +13,11 @@
                 @if (title?.errors?.['required']){
                     <small class="error">Title is required</small>
                 }
+                @if (title?.errors?.['minlength']) {
+                    <small class="error">Title has a minimum length of 5 characters</small>
+                }
                 @if (title?.errors?.['maxlength']){
-                    <small class="error">Title has a maximum length of 32 characters</small>
+                    <small class="error">Title has a maximum length of 60 characters</small>
                 }
             }
         </label>
@@ -30,8 +33,11 @@
                 @if (description?.errors?.['required']){
                     <small class="error">Description is required</small>
                 }
-                @if (description?.errors?.['maxLength']){
-                    <small class="error">Description has a maximum length of 1024 characters</small>
+                @if (description?.errors?.['minlength']) {
+                    <small class="error">Description has a minimum length of 20 characters</small>
+                }
+                @if (description?.errors?.['maxlength']){
+                    <small class="error">Description has a maximum length of 500 characters</small>
                 }
             }
         </label>
@@ -92,6 +98,13 @@
         >
             Create Issue
         </button>
+
+        @if (successMessage()) {
+            <p class="success">{{successMessage()}}</p>
+        }
+        @if (errorMessage()) {
+            <p class="error">{{errorMessage()}}</p>
+        }
     </form>
 
     <button routerLink="/">Go Back to List</button>

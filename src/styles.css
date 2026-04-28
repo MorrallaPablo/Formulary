@@ -7,7 +7,8 @@
 
     --background-color: #EEE;
     --text-color: #111;
-    --error-color: #A22;
+    --error-color: #922;
+    --success-color: #292;
 }
 
 * {
@@ -63,6 +64,11 @@ button {
     font-size: large;
     height: 2em;
     margin: var(--medium-padding) 0;
+    cursor: pointer;
+}
+
+.success {
+    color: var(--success-color);
 }
 
 .error {
